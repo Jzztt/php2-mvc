@@ -1,0 +1,17 @@
+# Environment files
+.env
+.env.*
+
+# Composer dependencies
+/vendor/
+
+# Application cache
+/app/storage/cache/*
+
+# IDE/editor files
+/.idea/
+/.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
