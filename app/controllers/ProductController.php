@@ -2,12 +2,13 @@
 
 namespace App\controllers;
 
+use App\Models\Product;
 
 class ProductController
 {
     public function index()
     {
-        $products = [];
+        $products = Product::getProduct();
         return view('index', compact('products'));
     }
     public function create()
