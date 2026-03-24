@@ -19,7 +19,7 @@ function route($route)
 
 function redirect($path)
 {
-    return header("Location" . route($path));
+    return header("Location: " . route($path));
     die;
 }
 

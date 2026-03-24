@@ -5,10 +5,13 @@
     <h1>Welcome to the create Products Page</h1>
 </div>
 <div>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="{{route('products/store')}}" method="POST" enctype="multipart/form-data">
         <div>
             <label for="name">Name</label>
             <input type="text" name="name">
+            @isset($errors['name'])
+            <p class="text-danger"> {{ $errors['name'] }}</p>
+            @endisset
         </div>
         <div>
             <label for="description">Description</label>
@@ -26,7 +29,7 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 </div>
 @endsection

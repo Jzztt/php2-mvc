@@ -19,7 +19,16 @@ class ProductController
     }
     public function store()
     {
-        echo "save product";
+        $data = $_POST;
+        $errors = [];
+        if (trim($data['name'] == "")) {
+            $errors['name'] = 'Vui Lòng nhập name';
+        }
+        if ($errors) {
+            return view('products.create', compact('errors'));
+        }
+        Product::create($data);
+        return redirect('products');
     }
     public function edit($id)
     {

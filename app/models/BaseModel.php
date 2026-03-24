@@ -33,4 +33,15 @@ class BaseModel
         $result = $stmt->fetchAll(PDO::FETCH_CLASS);
         return $result;
     }
+
+    public static function create($data)
+    {
+        $model = new static();
+        $colums = array_keys($data);
+        $columName = "`" . implode("`, `", $colums) . "`";
+        $columValues = ":" . implode(", :", $colums);
+        $sql = "INSERT INTO {$model->table} ({$columName}) VALUES ({$columValues})";
+        $stmt = $model->conn->prepare($sql);
+        $stmt->execute($data);
+    }
 }
