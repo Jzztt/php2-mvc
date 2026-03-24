@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductController
@@ -13,7 +14,8 @@ class ProductController
     }
     public function create()
     {
-        echo "create product";
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
     }
     public function store()
     {

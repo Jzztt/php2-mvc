@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
-
+use PDO;
 
 class Product extends BaseModel
 {
@@ -15,7 +15,7 @@ class Product extends BaseModel
         $sql = "SELECT products.*, categories.name as category_name FROM products JOIN categories ON products.category_id = categories.id";
         $stmt = $model->conn->prepare($sql);
         $stmt->execute();
-        $results = $stmt->fetchAll();
+        $results = $stmt->fetchAll(PDO::FETCH_CLASS);
         return $results;
     }
 }

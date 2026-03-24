@@ -6,6 +6,7 @@
     <h1>Welcome to the Home Page</h1>
 </div>
 <div>
+    <a class="btn btn-primary" href="{{ route('products/create')}}">Create</a>
     <table class="table">
         <thead>
             <tr>
@@ -20,17 +21,14 @@
         <tbody>
             @foreach($products as $product)
             <tr>
-                <td>{{ $product['id'] }}</td>
-                <td>{{ $product['name'] }}</td>
-                <td>{{ $product['description'] }}</td>
-                <td>{{ $product['price'] }}</td>
-                <td>{{ $product['category_name'] }}</td>
-                <td>
-                    <button class="btn btn-danger">Delete</button>
-                    <button class="btn btn-warning">Update</button>
-                </td>
-            </tr>
-            @endforeach
+                <td>{{ $product -> id}}</td>
+                <td>{{ $product -> name}}</td>
+                <td>{{ $product -> description}}</td>
+                <td>{{ $product -> price}}</td>
+                <td>{{ $product -> category->name}}</td>
+                <td><a href="{{route("products/{$product -> id}/delete")}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a></td>
+
+                @endforeach
         </tbody>
     </table>
 
