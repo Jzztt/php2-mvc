@@ -44,4 +44,11 @@ class BaseModel
         $stmt = $model->conn->prepare($sql);
         $stmt->execute($data);
     }
+
+    public static function destroy($id){
+        $model = new static();
+        $sql = "DELETE FROM {$model->table} WHERE id = :id";
+        $stmt = $model->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    }
 }

@@ -40,6 +40,7 @@ class ProductController
     }
     public function delete($id)
     {
-        echo 'delete product' . $id;
+        Product::destroy($id);
+        return redirect('products');
     }
 }
