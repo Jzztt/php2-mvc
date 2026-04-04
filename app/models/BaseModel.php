@@ -33,6 +33,15 @@ class BaseModel
         $result = $stmt->fetchAll(PDO::FETCH_CLASS);
         return $result;
     }
+    public static function find($id)
+    {
+        $model = new static();
+        $sql = "SELECT * FROM {$model->table} WHERE id=:id";
+        $stmt = $model->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
 
     public static function create($data)
     {
@@ -45,7 +54,8 @@ class BaseModel
         $stmt->execute($data);
     }
 
-    public static function destroy($id){
+    public static function destroy($id)
+    {
         $model = new static();
         $sql = "DELETE FROM {$model->table} WHERE id = :id";
         $stmt = $model->conn->prepare($sql);

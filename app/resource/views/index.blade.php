@@ -25,8 +25,11 @@
                 <td>{{ $product -> name}}</td>
                 <td>{{ $product -> description}}</td>
                 <td>{{ $product -> price}}</td>
-                <td>{{ $product -> category->name}}</td>
-                <td><a href="{{route("products/{$product -> id}/delete")}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a></td>
+                <td>{{ $product -> category_name}}</td>
+                <td>
+                    <a href="{{route("products/{$product -> id}/delete")}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a href="{{route("products/{$product -> id}/edit")}}" class="btn btn-warning">Edit</a>
+                </td>
 
                 @endforeach
         </tbody>

@@ -32,7 +32,10 @@ class ProductController
     }
     public function edit($id)
     {
-        echo 'edit product' . $id;
+        $products = Product::find($id);
+        $categories = Category::all();
+        var_dump($products);
+        return view('products.edit', compact('products', 'categories'));
     }
     public function update($id)
     {
