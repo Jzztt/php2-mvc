@@ -39,7 +39,19 @@ class ProductController
     }
     public function update($id)
     {
-        echo 'update product' . $id;
+        $product = Product::find($id);
+        $data = $_POST;
+        $errors = [];
+        if (trim($data['name'] == "")) {
+            $errors['name'] = 'Vui Lòng nhập name';
+        }
+        if ($errors) {
+            return view('products.edit', compact('errors', 'products'));
+        }
+        // $data['updated_at'] = date('Y-m-d H:i:s');
+        Product::update($id, $data);
+
+        return redirect('products');
     }
     public function delete($id)
     {

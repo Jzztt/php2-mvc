@@ -59,18 +59,16 @@ class BaseModel
         // UPDATE table_name
         // SET column1 = value1, column2 = value2, ...
         // WHERE condition;
-        // 1. UPDATE products SET
-        // 2. name=:name, description=:desctription
-        // 3. WHERE id=:id
-        // UPDATE products SET name=:name, description=:desctription  WHERE id=:id
         $model = new static();
         $colums = array_keys($data);
-        $sql = "UPDATE {$model->table} SET ";
-        foreach ($colums as $colum) {
-            $sql .= "{$colum} = :{$colum},";
+        $sql = "UPDATE $model->table SET ";
+        foreach ($data as $key => $value) {
+            $sql .= "`{$key}`=:{$key}, ";
         }
-        $sql = rtrim($sql, ",");
-        $sql .= "WHERE id = :id";
+        //Xóa dấu , ở cuối chuỗi
+        $sql = rtrim($sql, ", ");
+        $sql .= " WHERE `id`=:id";
+        echo $sql;
         $stmt = $model->conn->prepare($sql);
         $stmt->execute(array_merge($data, ['id' => $id]));
     }
