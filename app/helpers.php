@@ -28,7 +28,7 @@ function upload_file($file, $folder = null)
     $fileTmpPath = $file['tmp_name'];
     $fileName = time() . '-' . $file['name'];
 
-    $uploadDir = __DIR__ . '/storage/' . $folder . '/';
+    $uploadDir =   'app/storage/' . $folder . '/';
 
 
     if (!is_dir($uploadDir)) {
