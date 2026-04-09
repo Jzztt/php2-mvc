@@ -20,6 +20,9 @@ class ProductController
     public function store()
     {
         $data = $_POST;
+        $file = $_FILES['image'];
+        $imagePath = upload_file($file, 'products');
+        $data['image'] = $imagePath;
         $errors = [];
         if (trim($data['name'] == "")) {
             $errors['name'] = 'Vui Lòng nhập name';

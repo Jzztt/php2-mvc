@@ -14,6 +14,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Image</th>
                 <th>Category Name</th>
                 <th>Action</th>
             </tr>
@@ -25,6 +26,7 @@
                 <td>{{ $product -> name}}</td>
                 <td>{{ $product -> description}}</td>
                 <td>{{ $product -> price}}</td>
+                <td><img src="{{ file_url($product -> image) }}" alt="{{ $product -> name }}" width="100"></td>
                 <td>{{ $product -> category_name}}</td>
                 <td>
                     <a href="{{route("products/{$product -> id}/delete")}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>

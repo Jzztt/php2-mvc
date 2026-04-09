@@ -16,10 +16,20 @@
         <div>
             <label for="description">Description</label>
             <input type="text" name="description">
+            @isset($errors['description'])
+            <p class="text-danger"> {{ $errors['description'] }}</p>
+            @endisset
         </div>
         <div>
             <label for="price">Price</label>
             <input type="text" name="price">
+            @isset($errors['price'])
+            <p class="text-danger"> {{ $errors['price'] }}</p>
+            @endisset
+        </div>
+        <div>
+            <label for="image">Image</label>
+            <input type="file" name="image" accept="image/*">
         </div>
         <div>
             <label for="category">Category</label>

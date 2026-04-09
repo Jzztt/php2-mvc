@@ -28,15 +28,25 @@ function upload_file($file, $folder = null)
     $fileTmpPath = $file['tmp_name'];
     $fileName = time() . '-' . $file['name'];
 
-    $uploadDir = 'storage/' . $folder . '/';
+    $uploadDir = __DIR__ . '/storage/' . $folder . '/';
+
+
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
 
-    $desPath = $uploadDir . $fileName;
+    // Đường dẫn đầy đủ để lưu file
+    $destPath = $uploadDir . $fileName;
 
-    if (move_uploaded_file($fileTmpPath, $desPath)) {
-        return  $desPath;
+    // Di chuyển file từ thư mục tạm thời đến thư mục đích
+    if (move_uploaded_file($fileTmpPath, $destPath)) {
+        return $destPath;
     }
-    throw new Exception('Lỗi upload file');
+
+    throw new Exception('Lỗi upload file!');
+}
+
+function file_url($file)
+{
+    return  $_ENV['APP_URL'] . $file;
 }
